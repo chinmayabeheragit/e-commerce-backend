@@ -1,0 +1,47 @@
+pipeline {
+	agent any
+	stages {
+		stage ("pull code from git repo"){
+			steps{
+            git branch: 'dev', credentialsId: 'jenkins', url: 'git@bitbucket.org:hypersagetechnology/paymentgateway-backend.git'
+			}
+		}
+		stage ("Build the code"){
+			steps{
+				sh 'npm install'
+			}
+		}
+        stage('Remove Old Containers and Images') {
+            steps {
+                script {
+                    sh '''
+                    sudo docker stop payment || true
+                    sudo docker rm payment || true
+                    '''
+                    sh '''
+                    sudo docker rmi rahul9664/payment:latest || true
+                    '''
+                }
+            }
+        }
+
+		stage ("Building docker image"){
+			steps{
+				sh 'sudo docker build -t rahul9664/payment:latest .'
+			}
+		}
+		stage ("Push on Docker-Hub"){
+			steps{
+				withCredentials([string(credentialsId: 'docker_hub', variable: 'docker_passwd')]) {
+    					sh 'sudo docker login -u rahul9664 -p ${docker_passwd}'
+					sh 'sudo docker push rahul9664/payment'
+				}
+			}
+		}
+		stage ("Testing the Build"){
+			steps{
+				sh 'sudo docker run -dit --name payment -p 3006:3006 rahul9664/payment:latest'
+			}
+		}
+	}
+}

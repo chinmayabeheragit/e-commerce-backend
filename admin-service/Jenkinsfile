@@ -1,0 +1,42 @@
+pipeline {
+	agent any
+	stages {
+		stage ("pull code from git repo"){
+			steps{
+                git branch: 'dev', credentialsId: 'jenkins', url: 'git@bitbucket.org:hypersagetechnology/admin-panel-backend.git'
+			}
+		}
+        stage('Remove Old Containers and Images') {
+            steps {
+                script {
+                    sh '''
+                    sudo docker stop admin-panel || true
+                    sudo docker rm admin-panel || true
+                    '''
+                    sh '''
+                    sudo docker rmi rahul9664/admin-panel:latest || true
+                    '''
+                }
+            }
+        }
+
+		stage ("Building docker image"){
+			steps{
+				sh 'sudo docker build -t rahul9664/admin-panel:latest .'
+			}
+		}
+		stage ("Push on Docker-Hub"){
+			steps{
+				withCredentials([string(credentialsId: 'docker_hub', variable: 'docker_passwd')]) {
+    					sh 'sudo docker login -u rahul9664 -p ${docker_passwd}'
+					sh 'sudo docker push rahul9664/admin-panel'
+				}
+			}
+		}
+		stage ("Testing the Build"){
+			steps{
+				sh 'sudo docker run -dit --name admin-panel -p 3002:3002 rahul9664/admin-panel:latest'
+			}
+		}
+	}
+}

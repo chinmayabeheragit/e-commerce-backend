@@ -1,0 +1,41 @@
+pipeline {
+	agent any
+	stages {
+		stage ("pull code from git repo"){
+			steps{
+				git branch: 'chinmayaU', credentialsId: 'jenkins', url: 'git@bitbucket.org:hypersagetechnology/user-panel-backend.git'
+			}
+		}
+		stage('Remove Old Containers and Images') {
+            steps {
+                script {
+                    sh '''
+                    sudo docker stop user || true
+                    sudo docker rm user || true
+                    '''
+                    sh '''
+                    sudo docker rmi rahul9664/user:latest || true
+                    '''
+                }
+            }
+        }
+		stage ("Building docker image"){
+			steps{
+				sh 'sudo docker build -t rahul9664/user:latest .'
+			}
+		}
+		stage ("Push on Docker-Hub"){
+			steps{
+				withCredentials([string(credentialsId: 'docker_hub', variable: 'docker_passwd')]) {
+    					sh 'sudo docker login -u rahul9664 -p ${docker_passwd}'
+					sh 'sudo docker push rahul9664/user:latest'
+				}
+			}
+		}
+		stage ("Testing the Build"){
+			steps{
+				sh 'sudo docker run -dit --name user -p 3004:3004 rahul9664/user:latest'
+			}
+		}
+	}
+}
