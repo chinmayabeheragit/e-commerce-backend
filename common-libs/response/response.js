@@ -1,5 +1,5 @@
-const statusCode = require("../utils/statusCode.js");
-const constants = require("../constant/constants.js");
+const statusCode = require("../../common-libs/utils/statusCode.js");
+const constants = require("../../common-libs/constant/constants.js");
 
 module.exports = {
   successWith: (

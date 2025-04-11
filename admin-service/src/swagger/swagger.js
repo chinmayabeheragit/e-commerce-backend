@@ -6,8 +6,8 @@ module.exports = function (app) {
   let swaggerDefinition = {
     swagger: "2.0",
     info: {
-      title: "KIDTRYZ Admin service  API's",
-      description: "RESTful API for KIDTRYZ Admin services",
+      title: "E-commerce Admin service  API's",
+      description: "RESTful API for E-commerce Admin services",
       version: "1.0",
     },
     servers: [

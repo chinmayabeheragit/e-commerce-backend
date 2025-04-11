@@ -1,4 +1,4 @@
-const statusCode = require("../utils/statusCode.js");
+const statusCode = require("../../common-libs/utils/statusCode");
 
 module.exports = {
   error: (errorCode, message, displayMessage, customStatusCode, customData) => {

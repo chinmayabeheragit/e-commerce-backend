@@ -1,5 +1,5 @@
-const response = require("../../commons/response/response");
-const statusCode = require("../../commons/utils/statusCode");
+const response = require("../../../common-libs/response/response");
+const statusCode = require("../../../common-libs/utils/statusCode");
 const Joi = require('joi');
 const validateCategory = async (req, res, next) => {
     const schema = Joi.object({

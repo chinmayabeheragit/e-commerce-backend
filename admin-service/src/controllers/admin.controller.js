@@ -1,5 +1,5 @@
-const StatusCode = require("../../commons/utils/statusCode");
-const response = require("../../commons/response/response");
+const StatusCode = require("../../../common-libs/utils/statusCode");
+const response = require("../../../common-libs/response/response");
 const mongoose = require("mongoose");
 const categoryService = require("../services/category.service");
 const BrandAdminService = require("../services/adminbrand.service");
