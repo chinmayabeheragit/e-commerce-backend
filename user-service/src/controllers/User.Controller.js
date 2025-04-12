@@ -13,8 +13,8 @@ const productManagementService = require("../Services/vendorProduct.service");
 const paymentService = require("../Services/user.payment.service");
 
 const locationService = require("../Services/user.location.service");
-const StatusCode = require("../../commons/utils/statusCode");
-const response = require("../../commons/response/response");
+const StatusCode = require("../../../common-libs/utils/statusCode");
+const response = require("../../../common-libs/response/response");
 const mongoose = require("mongoose");
 
 const login = async (req, res) => {

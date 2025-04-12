@@ -8,8 +8,8 @@ module.exports = function (app) {
     const swaggerDefinition = {
         swagger: "2.0",
         info: {
-            title: "KIDTRYZ USER PANNEL",
-            description: "RESTFUL API FOR KIDTRYZ USER SERVICES",
+            title: "E-commerce USER PANNEL",
+            description: "RESTFUL API FOR E-commerce USER SERVICES",
             version: "1.0",
         },
         services: [
@@ -33,7 +33,7 @@ module.exports = function (app) {
         swaggerOptions: {
           validatorUrl: null,
         },
-        customSiteTitle: "Swagger - KIDTRYZ USER",
+        customSiteTitle: "Swagger - E-commerce USER",
       };
     const swaggerSpec = swaggerJSDoc(options);
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec,extraOptions));

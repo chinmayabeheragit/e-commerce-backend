@@ -1,8 +1,8 @@
 const profileQuery = require("../Querys/userProfile.query");
 const generateAuthToken = require("../middleware/token");
 const bcrypt = require("bcrypt");
-const customException = require("../../commons/exception/customException");
-const statusCode = require("../../commons/utils/statusCode");
+const customException = require("../../../common-libs/exception/customException");
+const statusCode = require("../../../common-libs/utils/statusCode");
 const saveUser = async (body, session) => {
   try {
     const hashedPassword = await bcrypt.hash(body.password, 10);

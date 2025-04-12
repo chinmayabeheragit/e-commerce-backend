@@ -4,11 +4,11 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const UserQuery = require('../Querys/user.auth.Query');
 const generateAuthToken = require('../../src/middleware/token')
-const customException = require('../../commons/exception/customException') 
-const statusCode = require("../../commons/utils/statusCode");
+const customException = require('../../../common-libs/exception/customException') 
+const statusCode = require("../../../common-libs/utils/statusCode");
 const crypto = require('crypto');
-const sendMail = require('../../commons/nodemailer/nodemailer')
-const bcryptPassword = require("../../commons/utils/hash.password");
+const sendMail = require('../middleware/nodemailer/nodemailer')
+const bcryptPassword = require("../middleware/hash.password");
 
 const register = async ({ name, email, password, mobileNumber }) => {
   try {

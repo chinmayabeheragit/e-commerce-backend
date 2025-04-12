@@ -35,7 +35,7 @@ module.exports = function (app) {
     swaggerOptions: {
       validatorUrl: null,
     },
-    customSiteTitle: "Swagger - KIDTRYZ ADMIN",
+    customSiteTitle: "Swagger - E-commerce ADMIN",
   };
   // initialize swagger-jsdoc
   swaggerSpec = swaggerJSDoc(options);

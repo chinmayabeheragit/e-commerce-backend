@@ -1,5 +1,5 @@
-const customException = require("../../commons/exception/customException");
-const statusCode = require("../../commons/utils/statusCode");
+const customException = require("../../../common-libs/exception/customException");
+const statusCode = require("../../../common-libs/utils/statusCode");
 const ordermanagementQuery = require('../Querys/user.ordermanagementQuery')
 const OrderManagementService = require('../Services/user.ordermanagement.service')
 const axios = require("axios");

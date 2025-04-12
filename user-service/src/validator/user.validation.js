@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const response = require("../../commons/response/response");
-const statusCode = require("../../commons/utils/statusCode");
+const response = require("../../../common-libs/response/response");
+const statusCode = require("../../../common-libs/utils/statusCode");
 
 
 const validateRequest = async (schemas, req, res, next) => {

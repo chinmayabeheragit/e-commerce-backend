@@ -1,8 +1,8 @@
 
 const axios = require('axios');
 const PaymentRepository = require('../Querys/user.transaction.query');
-const customException = require('../../commons/exception/customException');
-const StatusCode = require('../../commons/utils/statusCode');
+const customException = require('../../../common-libs/exception/customException');
+const StatusCode = require('../../../common-libs/utils/statusCode');
 
 const initiatePayment = async (amount, currency, description) => {
   try {

@@ -1,6 +1,6 @@
 const OrderDeliveryQuery = require('../Querys/user.delivered.order.query')
-const statusCode = require("../../commons/utils/statusCode")
-const customException = require("../../commons/exception/customException");
+const statusCode = require("../../../common-libs/utils/statusCode")
+const customException = require("../../../common-libs/exception/customException");
 
 const getOrderDeliveryStatus = async (userId, orderId) => {
     try {

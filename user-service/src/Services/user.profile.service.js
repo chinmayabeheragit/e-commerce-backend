@@ -1,6 +1,6 @@
-const customException = require('../../commons/exception/customException');
+const customException = require('../../../common-libs/exception/customException');
 const ProfileQuery = require('../Querys/user.profile.query')
-const statusCode = require('../../commons/utils/statusCode')
+const statusCode = require('../../../common-libs/utils/statusCode')
 const Joi = require('joi');
 
 
