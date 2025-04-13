@@ -7,8 +7,8 @@ const withdrawalService = require("../services/vendor.withdrawal.service");
 const vendorDetailsService = require("../services/vendor.profile.service");
 const vendorTrackingService = require("../services/vendor.tracking.service")
 const confirmorderService = require('../services/confirm.order.service')
-const StatusCode = require("../../commons/utils/statusCode");
-const response = require("../../commons/response/response");
+const StatusCode = require("../../../common-libs/utils/statusCode");
+const response = require("../../../common-libs/response/response");
 const mongoose = require("mongoose");
 const addProd = async (req, res) => {
   const session = await mongoose.startSession();

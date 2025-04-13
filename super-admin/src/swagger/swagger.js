@@ -7,8 +7,8 @@ module.exports = function (app) {
   let swaggerDefinition = {
     swagger: "2.0",
     info: {
-      title: "KIDTRYZ Admin service  API's",
-      description: "RESTful API for KIDTRYZ Admin services",
+      title: "E-commerce SuperAdmin service  API's",
+      description: "RESTful API for E-commerce Admin services",
       version: "1.0",
     },
     servers: [
@@ -36,7 +36,7 @@ module.exports = function (app) {
     swaggerOptions: {
       validatorUrl: null,
     },
-    customSiteTitle: "Swagger - KIDTRYZ ADMIN LOGIN",
+    customSiteTitle: "Swagger - E-commerce ADMIN LOGIN",
   };
   // initialize swagger-jsdoc
   swaggerSpec = swaggerJSDoc(options);

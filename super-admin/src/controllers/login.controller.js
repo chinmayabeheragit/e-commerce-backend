@@ -1,5 +1,5 @@
-const StatusCode = require("../../commons/utils/statusCode");
-const response = require("../../commons/response/response");
+const StatusCode = require("../../../common-libs/utils/statusCode");
+const response = require("../../../common-libs/response/response");
 const loginService = require("../services/service");
 const mongoose = require("mongoose");
 const addAdmin = async (req, res) => {
