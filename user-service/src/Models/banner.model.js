@@ -3,7 +3,7 @@ const shortid = require("shortid");
 const bannerSchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-A-BANN-${shortid.generate()}`,
+    default: () => `PROD-BANN-${shortid.generate()}`,
   },
   bannerName: {
     type: String,

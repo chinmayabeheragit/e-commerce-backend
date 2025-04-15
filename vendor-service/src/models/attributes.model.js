@@ -3,7 +3,7 @@ const shortid = require("shortid");
 const attributesSchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-V-ATTRI-${shortid.generate()}`,
+    default: () => `PROD-V-ATTRI-${shortid.generate()}`,
   },
   title: {
     type: String,

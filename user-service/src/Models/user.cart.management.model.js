@@ -5,7 +5,7 @@ const cartItemSchema = new mongoose.Schema(
   {
     _id: {
       type: String,
-      default: () => `KIDTRYZ-CART-ENQ-${shortId.generate()}`,
+      default: () => `PROD-CART-ENQ-${shortId.generate()}`,
     },
     products: [
       {

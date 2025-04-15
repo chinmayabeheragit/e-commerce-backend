@@ -4,7 +4,7 @@ const shortId = require("shortid");
 const cartItemSchema = new mongoose.Schema({
   productId: {
     type: String,
-    default: () => `KIDTRYZ-A-ENQ-${shortId.generate()}`,
+    default: () => `PROD-A-ENQ-${shortId.generate()}`,
   },
   productName: {
     type: String,

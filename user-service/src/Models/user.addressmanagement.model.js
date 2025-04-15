@@ -5,7 +5,7 @@ const addressSchema = new mongoose.Schema(
   {
     _id: {
       type: String,
-      default: () => `KIDTRYZ-ADDRESS-ENQ-${shortId.generate()}`,
+      default: () => `PROD-ADDRESS-ENQ-${shortId.generate()}`,
     },
     fullName: {
       type: String,

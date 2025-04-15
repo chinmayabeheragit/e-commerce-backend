@@ -4,7 +4,7 @@ const shortid = require("shortid");
 const productSchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-V-PROD-${shortid.generate()}`,
+    default: () => `PROD-${shortid.generate()}`, // Generic ID prefix
   },
   name: {
     type: String,
@@ -20,10 +20,9 @@ const productSchema = new mongoose.Schema({
   subCategory: {
     type: [String],
   },
-  age: {
+  ageGroup: {
     type: String,
-    required: true,
-    enum: ["0-6", "6-12", "12-18", "18-24", "24+"],
+    enum: ["0-6", "6-12", "12-18", "18-24", "24+"], // Keep if age-based products needed
   },
   description: {
     type: String,
@@ -35,10 +34,10 @@ const productSchema = new mongoose.Schema({
   },
   discountPercentage: {
     type: Number,
-    min:1,
-    max:70,
+    min: 1,
+    max: 100, // Broadened to be fully generic
   },
-  kidztryzCoins: {
+  loyaltyPoints: { // Generic name instead of org-specific
     type: Number,
   },
   dateAdded: {
@@ -72,24 +71,28 @@ const productSchema = new mongoose.Schema({
   },
   size: {
     type: String,
-    enum: ["S", "M", "L", "XL", "XXL"],
+    enum: ["XS", "S", "M", "L", "XL", "XXL"], // Added XS for more options
   },
   weight: {
     type: String,
   },
-  vendorName: {
+  vendorId: { // Changed from vendorName to vendorId for better DB normalization
     type: String,
   },
 });
 
 productSchema.pre("save", function (next) {
-  this.category = this.category.toLowerCase();
-  this.subCategory = this.subCategory.map(subCat => subCat.toLowerCase());
+  if (this.category) {
+    this.category = this.category.toLowerCase();
+  }
+  if (Array.isArray(this.subCategory)) {
+    this.subCategory = this.subCategory.map(subCat => subCat.toLowerCase());
+  }
   next();
 });
 
-const productManagementModel = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
 
 module.exports = {
-  productManagementModel,
+  Product,
 };

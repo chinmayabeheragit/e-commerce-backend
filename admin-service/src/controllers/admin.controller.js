@@ -200,7 +200,7 @@ const addbrand = async (req, res) => {
       { successCode: StatusCode.SUCCESS_CODE, result },
       res,
       "Brand added successfully.",
-      "The new brand has been added to the KIDTRYZ."
+      "The new brand has been added to the ORG."
     );
   } catch (error) {
     await session.abortTransaction();
@@ -1313,7 +1313,7 @@ module.exports = {
    *         required: true
    *         schema:
    *           type: string
-   *           example: "KIDTRYZ-A-BANN-12345"
+   *           example: "PROD-A-BANN-12345"
    *     responses:
    *       200:
    *         description: Banner deleted successfully
@@ -1454,7 +1454,7 @@ module.exports = {
    * /get-req-vendor:
    *   get:
    *     summary: View all requested vendors.
-   *     description: Retrieve a list of all vendors who have requested to join the Kidtryz platform. This endpoint allows you to view vendors who have expressed interest in becoming a part of the Kidtryz e-commerce ecosystem.
+   *     description: Retrieve a list of all vendors who have requested to join the E-COMMERCE platform. This endpoint allows you to view vendors who have expressed interest in becoming a part of the e-commerce ecosystem.
    *     tags:
    *       - Vendor Management
    *     parameters:
@@ -1479,7 +1479,7 @@ module.exports = {
    * /vendor-approve:
    *   post:
    *     summary: approve requested vendor.
-   *     description: Approve a vendor who has requested to join the Kidtryz platform. This endpoint allows administrators to approve a vendor's request, enabling them to start operating within the platform. The request must include the vendor's ID in the body to specify which vendor is being approved.
+   *     description: Approve a vendor who has requested to join the E-COMMERCE platform. This endpoint allows administrators to approve a vendor's request, enabling them to start operating within the platform. The request must include the vendor's ID in the body to specify which vendor is being approved.
    *     tags:
    *       - Vendor Management
    *     parameters:
@@ -1512,7 +1512,7 @@ module.exports = {
    * /make-vendor-inactive:
    *   post:
    *     summary: Mark a vendor as inactive.
-   *     description: This endpoint allows administrators to mark a vendor as inactive. The request must include the vendor's MongoDB ObjectId in the body to specify which vendor is being deactivated. This action updates the vendor's status to inactive, preventing them from operating on the Kidtryz platform.
+   *     description: This endpoint allows administrators to mark a vendor as inactive. The request must include the vendor's MongoDB ObjectId in the body to specify which vendor is being deactivated. This action updates the vendor's status to inactive, preventing them from operating on the E-COMMERCE platform.
    *     tags:
    *       - Vendor Management
    *     parameters:
@@ -1550,7 +1550,7 @@ module.exports = {
    * /make-vendor-active:
    *   post:
    *     summary: Mark a vendor as active.
-   *     description: This endpoint allows administrators to mark a vendor as active. The request must include the vendor's MongoDB ObjectId in the body to specify which vendor is being activated. This action updates the vendor's status to active, allowing them to operate on the Kidtryz platform.
+   *     description: This endpoint allows administrators to mark a vendor as active. The request must include the vendor's MongoDB ObjectId in the body to specify which vendor is being activated. This action updates the vendor's status to active, allowing them to operate on the E-COMMERCE platform.
    *     tags:
    *       - Vendor Management
    *     parameters:
@@ -1621,7 +1621,7 @@ module.exports = {
    * @swagger
    * tags:
    *   - name: Category
-   *     description: APIs for managing categories within the Kidtryz platform
+   *     description: APIs for managing categories within the E-COMMERCE platform
    * definitions:
    *   Category:
    *     type: object
@@ -1658,7 +1658,7 @@ module.exports = {
    * /addcategory:
    *   post:
    *     summary: Add a new category
-   *     description: This API allows you to create a new category with the specified details on the Kidtryz platform. Ensure that the request includes valid authentication to proceed.
+   *     description: This API allows you to create a new category with the specified details on the E-COMMERCE platform. Ensure that the request includes valid authentication to proceed.
    *     tags:
    *       - Category
    *     produces:
@@ -2986,10 +2986,10 @@ module.exports = {
  *                     properties:
  *                       _id:
  *                         type: string
- *                         example: KIDTRYZ-CONFIRM-ORDER-abc123
+ *                         example: PROD-CONFIRM-ORDER-abc123
  *                       orderId:
  *                         type: string
- *                         example: KIDTRYZ-ORDER-xyz789
+ *                         example: PROD-ORDER-xyz789
  *                       CustomerName:
  *                         type: string
  *                         example: John Doe
@@ -3113,10 +3113,10 @@ module.exports = {
  *                   properties:
  *                     _id:
  *                       type: string
- *                       example: KIDTRYZ-CONFIRM-ORDER-abc123
+ *                       example: PROD-CONFIRM-ORDER-abc123
  *                     orderId:
  *                       type: string
- *                       example: KIDTRYZ-ORDER-xyz789
+ *                       example: PROD-ORDER-xyz789
  *                     CustomerName:
  *                       type: string
  *                       example: John Doe
@@ -3190,10 +3190,10 @@ module.exports = {
  *                 properties:
  *                   _id:
  *                     type: string
- *                     example: KIDTRYZ-CONFIRM-ORDER-abc123
+ *                     example: PROD-CONFIRM-ORDER-abc123
  *                   orderId:
  *                     type: string
- *                     example: KIDTRYZ-ORDER-xyz789
+ *                     example: PROD-ORDER-xyz789
  *                   CustomerName:
  *                     type: string
  *                     example: John Doe

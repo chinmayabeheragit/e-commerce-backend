@@ -4,11 +4,11 @@ const orderSchema = new mongoose.Schema(
   {
     _id: {
       type: String,
-      default: () => `KIDTRYZ-A-ENQ-${shortId.generate()}`,
+      default: () => `PROD-A-ENQ-${shortId.generate()}`,
     },
     orderId: {
       type: String,
-      default: () => `KIDTRYZ-ORDER-ENQ-${shortId.generate()}`,
+      default: () => `PROD-ORDER-ENQ-${shortId.generate()}`,
     },
     CustomerName: {
       type: String,

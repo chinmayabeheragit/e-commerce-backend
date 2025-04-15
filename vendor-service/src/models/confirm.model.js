@@ -4,7 +4,7 @@ const shortid = require('shortid');
 const confirmOrderSchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-CONFIRM-ORDER-${shortid.generate()}`,
+    default: () => `PROD-CONFIRM-ORDER-${shortid.generate()}`,
   },
   orderId: {
     type: String,

@@ -4,7 +4,7 @@ const shortid = require("shortid");
 const userProfileSchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-USER-${shortid.generate()}`,
+    default: () => `PROD-USER-${shortid.generate()}`,
   },
   name: {
     type: String,

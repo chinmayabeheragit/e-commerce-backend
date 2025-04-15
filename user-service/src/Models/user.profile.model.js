@@ -4,7 +4,7 @@ const shortid = require("shortid");
 const userProfileSchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-USER-ENQ-${shortid.generate()}`,
+    default: () => `PROD-USER-ENQ-${shortid.generate()}`,
   },
   userImage: {
     type: String,

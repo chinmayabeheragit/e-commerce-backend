@@ -3,7 +3,7 @@ const shortid = require("shortid");
 const vendorSchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-A-VEND-${shortid.generate()}`,
+    default: () => `PROD-A-VEND-${shortid.generate()}`,
   },
     Name: {
     type: String,

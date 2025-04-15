@@ -3,7 +3,7 @@ const shortid = require("shortid");
 const categorySchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-A-ADMIN-cate-${shortid.generate()}`,
+    default: () => `PROD-ADMIN-cate-${shortid.generate()}`,
   },
   cat_name: {
     type: String,

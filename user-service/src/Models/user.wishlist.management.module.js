@@ -4,7 +4,7 @@ const WishlistItemSchema = new mongoose.Schema(
   {
     _id: {
       type: String,
-      default: () => `KIDTRYZ-WISHLIST-ENQ-${shortId.generate()}`,
+      default: () => `PROD-WISHLIST-ENQ-${shortId.generate()}`,
       unique: true
     },
     productDetails: {

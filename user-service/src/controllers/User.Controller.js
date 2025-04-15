@@ -3207,7 +3207,7 @@ singleProductOrder,
  *                   properties:
  *                     _id:
  *                       type: string
- *                       example: "KIDTRYZ-USER-ENQ-abc123"
+ *                       example: "PROD-USER-ENQ-abc123"
  *                     userImage:
  *                       type: string
  *                       example: "default.jpg"
@@ -4490,7 +4490,7 @@ chooseOrderQuantity,
  *                     properties:
  *                       _id:
  *                         type: string
- *                         example: KIDTRYZ-CONFIRM-ORDER-jNFGt45x
+ *                         example: PROD-CONFIRM-ORDER-jNFGt45x
  *                       orderId:
  *                         type: string
  *                         example: ORD12345

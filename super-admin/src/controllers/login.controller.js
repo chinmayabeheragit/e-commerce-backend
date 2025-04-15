@@ -50,6 +50,7 @@ const login = async (req, res) => {
       res
     );
   } catch (error) {
+    console.log(error);
     return response.handleErrorResponse(
       { errorCode: StatusCode.SERVER_ERROR, message: "Internal Server Error"},
       res,

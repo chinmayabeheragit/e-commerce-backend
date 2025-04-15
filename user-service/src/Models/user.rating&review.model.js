@@ -4,7 +4,7 @@ const shortId = require("shortid");
 const ratingReviewSchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-RATINGREVIEW-ENQ-${shortId.generate()}`,
+    default: () => `PROD-RATINGREVIEW-ENQ-${shortId.generate()}`,
   },
   name: {
     type: String,

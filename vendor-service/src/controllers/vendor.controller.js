@@ -2364,7 +2364,7 @@ module.exports = {
  *           description: The ID of the confirmed order to update.
  *           schema:
  *             type: string
- *           example: "KIDTRYZ-CONFIRM-ORDER-i8SvhJ3K-"
+ *           example: "PROD-CONFIRM-ORDER-i8SvhJ3K-"
  *         - in: header
  *           name: Authorization
  *           description: Access token for authentication.
@@ -2410,10 +2410,10 @@ module.exports = {
  *                     properties:
  *                       _id:
  *                         type: string
- *                         example: "KIDTRYZ-CONFIRM-ORDER-i8SvhJ3K-"
+ *                         example: "PROD-CONFIRM-ORDER-i8SvhJ3K-"
  *                       orderId:
  *                         type: string
- *                         example: "KIDTRYZ-ORDER-ENQ-gBsl2l570"
+ *                         example: "PROD-ORDER-ENQ-gBsl2l570"
  *                       CustomerName:
  *                         type: string
  *                         example: "Johny Doe"
@@ -2513,10 +2513,10 @@ module.exports = {
  *                     properties:
  *                       _id:
  *                         type: string
- *                         example: KIDTRYZ-CONFIRM-ORDER-abc123
+ *                         example: PROD-CONFIRM-ORDER-abc123
  *                       orderId:
  *                         type: string
- *                         example: KIDTRYZ-ORDER-xyz789
+ *                         example: PROD-ORDER-xyz789
  *                       CustomerName:
  *                         type: string
  *                         example: John Doe
@@ -2589,7 +2589,7 @@ module.exports = {
  *         description: The ID of the confirmed order to update.
  *         required: true
  *         type: string
- *         example: "KIDTRYZ-CONFIRM-ORDER-i8SvhJ3K-"
+ *         example: "PROD-CONFIRM-ORDER-i8SvhJ3K-"
  *       - in: body
  *         name: body
  *         description: JSON object containing the AWB number.
@@ -2615,7 +2615,7 @@ module.exports = {
  *               properties:
  *                 _id:
  *                   type: string
- *                   example: KIDTRYZ-CONFIRM-ORDER-jNFGt45x
+ *                   example: PROD-CONFIRM-ORDER-jNFGt45x
  *                 awbNumber:
  *                   type: string
  *                   example: AWB123456789

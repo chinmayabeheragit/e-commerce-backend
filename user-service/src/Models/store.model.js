@@ -3,7 +3,7 @@ const shortid = require('shortid');
 const storeSchema = new mongoose.Schema({
   _id: {
     type: String,
-    default: () => `KIDTRYZ-V-STORE-${shortid.generate()}`,
+    default: () => `PROD-V-STORE-${shortid.generate()}`,
   },
   storeLogo: {
     type: String,
