@@ -1,10 +1,11 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const { paymentService } = require('../config/service.config');
 
 module.exports = (app) => {
   app.use(
     '/api/payment',
     createProxyMiddleware({
-      target: 'http://localhost:4006', // payment-gateway
+      target: paymentService,
       changeOrigin: true,
       pathRewrite: { '^/api/payment': '' },
     })

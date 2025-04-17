@@ -1,30 +1,20 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const swaggerUi = require("swagger-ui-express");
-const YAML = require("yamljs");
-
-dotenv.config();
+const express = require('express');
 const app = express();
+const logger = require('./middlewares/logger.middleware');
 
-const adminRoute = require("./routes/admin.route");
-const userRoute = require("./routes/user.route");
-const vendorRoute = require("./routes/vendor.route");
-const paymentRoute = require("./routes/payment.route");
-const notifyRoute = require("./routes/notification.route");
+// Middlewares
+app.use(logger);
 
-// Routes
-app.use("/admin", adminRoute);
-app.use("/user", userRoute);
-app.use("/vendor", vendorRoute);
-app.use("/payment", paymentRoute);
-app.use("/notify", notifyRoute);
+// Load all routes
+require('./routes/admin.route')(app);
+require('./routes/super.admin.route')(app);
+require('./routes/user.route')(app);
+require('./routes/vendor.route')(app);
+require('./routes/payment.route')(app);
 
-// Swagger Docs
-const swaggerDocument = YAML.load("./docs/swagger.yaml");
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// Default route
+app.get('/', (req, res) => {
+  res.send('API Gateway is running!');
+});
 
-app.get("/", (req, res) => res.redirect("/docs"));
-
-app.listen(process.env.PORT || 3000, () =>
-  console.log(`API Gateway running on port ${process.env.PORT || 3000}`)
-);
+module.exports = app;

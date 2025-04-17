@@ -1,10 +1,11 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const { adminService } = require('../config/service.config');
 
 module.exports = (app) => {
   app.use(
     '/api/admin',
     createProxyMiddleware({
-      target: 'http://localhost:4003', // admin-service
+      target: adminService,
       changeOrigin: true,
       pathRewrite: { '^/api/admin': '' },
     })
