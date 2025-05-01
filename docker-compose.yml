@@ -1,25 +1,19 @@
-version: '3.8'
-
-services:
   api-gateway:
     build: ./api-gateway
     ports:
       - "3000:3000"
+    depends_on:
+      - user-service
+      - vendor-service
     networks:
-      - ecommerce-net
+      - backend
 
   nginx:
     build: ./nginx
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - api-gateway
     networks:
-      - ecommerce-net
-
-  # other services (admin-service, user-service, etc.)
-  # ...
-
-networks:
-  ecommerce-net:
-    driver: bridge
+      - backend
