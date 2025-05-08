@@ -9,17 +9,17 @@ const vendorTrackingService = require("../services/vendor.tracking.service")
 const confirmorderService = require('../services/confirm.order.service')
 const StatusCode = require("../../../common-libs/utils/statusCode");
 const response = require("../../../common-libs/response/response");
-const mongoose = require("mongoose");
+const { sequelize } = require('../db/sequelize');
 const addProd = async (req, res) => {
-  const session = await mongoose.startSession();
+  const transaction = await sequelize.transaction(); // Sequelize transaction
   try {
-    session.startTransaction();
     const result = await productManagementService.addProduct(
       req.body,
       req.vendorName,
-      session
+      transaction
     );
-    await session.commitTransaction();
+
+    await transaction.commit(); // Commit transaction
     return response.handleSuccessResponse(
       { successCode: StatusCode.SUCCESS_CODE, result },
       res,
@@ -27,17 +27,14 @@ const addProd = async (req, res) => {
       "The product has been saved to the database successfully."
     );
   } catch (error) {
-    console.log(error)
-    await session.abortTransaction();
-    if (error.errorCode) {
-      return response.handleErrorResponse(error, res);
-    }
+    console.error(error);
+    await transaction.rollback(); // Rollback on error
     return response.handleErrorResponse(
-      { errorCode: StatusCode.SERVER_ERROR, message: "Internal Server Error" },
+      error.errorCode
+        ? error
+        : { errorCode: StatusCode.SERVER_ERROR, message: "Internal Server Error" },
       res
     );
-  } finally {
-    session.endSession();
   }
 };
 const viewProd = async (req, res) => {

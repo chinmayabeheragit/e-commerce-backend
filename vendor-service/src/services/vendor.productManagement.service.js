@@ -15,15 +15,18 @@ const checkBody = async(body)=>{
       throw error;
   }
 }
-const addProduct = async (body, vendorName, session) => {
+const addProduct = async (body, vendorName, transaction) => {
   try {
     await checkBody(body);
     body.vendorName = vendorName;
-    return await productQuery.saveProd(body, session);
+
+    // Pass Sequelize transaction instead of Mongoose session
+    return await productQuery.saveProd(body, transaction);
   } catch (error) {
     throw error;
   }
 };
+
 const getAllProducts = async (vendorName, page, pageSize) => {
   try {
     return await productQuery.viewProd(vendorName, page, pageSize);

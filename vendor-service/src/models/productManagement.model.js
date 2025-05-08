@@ -1,98 +1,99 @@
-const mongoose = require("mongoose");
-const shortid = require("shortid");
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db/sequelize');
+const shortid = require('shortid');
 
-const productSchema = new mongoose.Schema({
-  _id: {
-    type: String,
-    default: () => `PROD-${shortid.generate()}`, // Generic ID prefix
+const Product = sequelize.define('Product', {
+  id: {
+    type: DataTypes.STRING,
+    defaultValue: () => `PROD-${shortid.generate()}`,
+    primaryKey: true,
   },
   name: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   brand: {
-    type: String,
+    type: DataTypes.STRING,
   },
   category: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
+    set(value) {
+      this.setDataValue('category', value.toLowerCase());
+    },
   },
   subCategory: {
-    type: [String],
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    set(value) {
+      if (Array.isArray(value)) {
+        this.setDataValue(
+          'subCategory',
+          value.map((v) => v.toLowerCase())
+        );
+      }
+    },
   },
   ageGroup: {
-    type: String,
-    enum: ["0-6", "6-12", "12-18", "18-24", "24+"], // Keep if age-based products needed
+    type: DataTypes.ENUM("0-6", "6-12", "12-18", "18-24", "24+"),
   },
   description: {
-    type: String,
-    required: true,
+    type: DataTypes.TEXT,
+    allowNull: false,
   },
   regularPrice: {
-    type: Number,
-    required: true,
+    type: DataTypes.FLOAT,
+    allowNull: false,
   },
   discountPercentage: {
-    type: Number,
-    min: 1,
-    max: 100, // Broadened to be fully generic
+    type: DataTypes.INTEGER,
+    validate: {
+      min: 1,
+      max: 100,
+    },
   },
-  loyaltyPoints: { // Generic name instead of org-specific
-    type: Number,
+  loyaltyPoints: {
+    type: DataTypes.INTEGER,
   },
   dateAdded: {
-    type: Date,
-    default: Date.now,
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
   },
   productType: {
-    type: String,
+    type: DataTypes.STRING,
   },
   stockStatus: {
-    type: String,
-    enum: ["In Stock", "Out of Stock", "Limited Stock"],
+    type: DataTypes.ENUM("In Stock", "Out of Stock", "Limited Stock"),
   },
   quantityInStock: {
-    type: Number,
-    required: true,
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
   alreadySold: {
-    type: Number,
-    default: 0,
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
   },
   images: {
-    type: [String],
-    required: true,
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: false,
   },
   attribute: {
-    type: String,
+    type: DataTypes.STRING,
   },
   subAttributes: {
-    type: [String],
+    type: DataTypes.ARRAY(DataTypes.STRING),
   },
   size: {
-    type: String,
-    enum: ["XS", "S", "M", "L", "XL", "XXL"], // Added XS for more options
+    type: DataTypes.ENUM("XS", "S", "M", "L", "XL", "XXL"),
   },
   weight: {
-    type: String,
+    type: DataTypes.STRING,
   },
-  vendorId: { // Changed from vendorName to vendorId for better DB normalization
-    type: String,
+  vendorId: {
+    type: DataTypes.STRING,
   },
+}, {
+  tableName: 'products',
+  timestamps: false,
 });
 
-productSchema.pre("save", function (next) {
-  if (this.category) {
-    this.category = this.category.toLowerCase();
-  }
-  if (Array.isArray(this.subCategory)) {
-    this.subCategory = this.subCategory.map(subCat => subCat.toLowerCase());
-  }
-  next();
-});
-
-const Product = mongoose.model("Product", productSchema);
-
-module.exports = {
-  Product,
-};
+module.exports = Product;

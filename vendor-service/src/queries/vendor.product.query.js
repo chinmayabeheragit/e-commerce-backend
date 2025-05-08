@@ -1,14 +1,14 @@
 const { productManagementModel } = require("../models/productManagement.model");
 
-const saveProd = async (productData, session) => {
+const saveProd = async (productData, transaction) => {
   try {
-    const product = new productManagementModel(productData);
-    await product.save(session);
+    const product = await productManagementModel.create(productData, { transaction });
     return product;
   } catch (error) {
     throw error;
   }
 };
+
 const viewProd = async (vendorName, page = 1, pageSize = 8) => {
   try {
     const skip = (page - 1) * pageSize;

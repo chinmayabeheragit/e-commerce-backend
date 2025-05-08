@@ -3,7 +3,9 @@ const helmet = require("helmet");
 const cors = require('cors');
 const bodyParser = require("body-parser");
 require("dotenv").config({ path: "./config/dev.env" });
-require("./db/mongoose");
+const initializeDatabase = require('./db/initDB');
+initializeDatabase();
+
 const vendorRouter = require("./routers/vendor.router");
 const contextPath = "/rest/api";
 const app = express();
