@@ -25,13 +25,89 @@ services:
       - zookeeper
 
   notification-service:
-    build:
-      context: ./notification-service
+    build: ./notification-service
     container_name: notification-service
     restart: always
     ports:
-      - "5001:5001" # Adjust as per your service
+      - "5001:5001"
     environment:
       - KAFKA_BROKER=kafka:9092
     depends_on:
       - kafka
+    volumes:
+      - ./common-libs:/app/common-libs  # Mounting common-libs
+
+  admin-service:
+    build: ./admin-service
+    container_name: admin-service
+    ports:
+      - "5002:5002"
+    restart: always
+    volumes:
+      - ./common-libs:/app/common-libs  # Mounting common-libs
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "5003:5003"
+    restart: always
+    volumes:
+      - ./common-libs:/app/common-libs  # Mounting common-libs
+
+  vendor-service:
+    build: ./vendor-service
+    container_name: vendor-service
+    ports:
+      - "5004:5004"
+    restart: always
+    volumes:
+      - ./common-libs:/app/common-libs  # Mounting common-libs
+
+  super-admin:
+    build: ./super-admin
+    container_name: super-admin
+    ports:
+      - "5005:5005"
+    restart: always
+    volumes:
+      - ./common-libs:/app/common-libs  # Mounting common-libs
+
+  payment-gateway:
+    build: ./payment-gateway
+    container_name: payment-gateway
+    ports:
+      - "5006:5006"
+    restart: always
+    volumes:
+      - ./common-libs:/app/common-libs  # Mounting common-libs
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    depends_on:
+      - admin-service
+      - user-service
+      - vendor-service
+      - super-admin
+      - notification-service
+      - payment-gateway
+    volumes:
+      - ./common-libs:/app/common-libs  # Mounting common-libs
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - api-gateway
+    volumes:
+      - ./nginx:/etc/nginx
+      - ./common-libs:/app/common-libs  # Mounting common-libs
+
